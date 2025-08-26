@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://diaxvfp6bmq6b"]
+
+[ext_resource type="Script" uid="uid://d0o6o85xe0lkb" path="res://level_tools/cylinder/cylinder.gd" id="1_ys4hq"]
+[ext_resource type="Material" uid="uid://ctaeyjgalrt61" path="res://level_tools/cylinder/cyl_material_1.tres" id="2_35fwg"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ongcg"]
+height = 10.0
+radius = 5.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lauxd"]
+top_radius = 5.0
+bottom_radius = 5.0
+height = 10.0
+
+[node name="Cylinder" type="StaticBody3D" groups=["freeze_while_building", "navmesh"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_ys4hq")
+material = ExtResource("2_35fwg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_ongcg")
+debug_fill = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+material_override = ExtResource("2_35fwg")
+instance_shader_parameters/Height = 10.0
+instance_shader_parameters/Radius = 5.0
+mesh = SubResource("CylinderMesh_lauxd")

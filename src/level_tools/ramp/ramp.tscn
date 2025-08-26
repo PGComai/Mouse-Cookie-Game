@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=4 uid="uid://rehobqoyn8iu"]
+
+[ext_resource type="Script" uid="uid://c1iyc27h10gyb" path="res://level_tools/ramp/ramp.gd" id="1_iffpq"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yhhnm"]
+points = PackedVector3Array(-0.5, 0.8, -0.5, -0.5, 0, 0.5, -0.5, -0.2, 0.5, -0.5, 1, -0.5, 0.5, 0.8, -0.5, 0.5, 0, 0.5, 0.5, -0.2, 0.5, 0.5, 1, -0.5)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_h2e45"]
+_surfaces = [{
+"aabb": AABB(-0.5, -0.2, -0.5, 1, 1.2, 1),
+"format": 34359738375,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AAAAv83MTD8AAAC/AAAAvwAAgD8AAAC/AAAAv83MTL4AAAA/AAAAvwAAAAAAAAA/AAAAv83MTL4AAAA/AAAAvwAAgD8AAAC/AAAAP83MTD8AAAC/AAAAP83MTL4AAAA/AAAAPwAAgD8AAAC/AAAAPwAAAAAAAAA/AAAAPwAAgD8AAAC/AAAAP83MTL4AAAA/AAAAvwAAAAAAAAA/AAAAvwAAgD8AAAC/AAAAPwAAgD8AAAC/AAAAvwAAAAAAAAA/AAAAPwAAgD8AAAC/AAAAPwAAAAAAAAA/AAAAv83MTD8AAAC/AAAAv83MTL4AAAA/AAAAP83MTL4AAAA/AAAAv83MTD8AAAC/AAAAP83MTL4AAAA/AAAAP83MTD8AAAC/AAAAvwAAAAAAAAA/AAAAP83MTL4AAAA/AAAAv83MTL4AAAA/AAAAvwAAAAAAAAA/AAAAPwAAAAAAAAA/AAAAP83MTL4AAAA/AAAAv83MTD8AAAC/AAAAPwAAgD8AAAC/AAAAvwAAgD8AAAC/AAAAv83MTD8AAAC/AAAAP83MTD8AAAC/AAAAPwAAgD8AAAC/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/////f/9//7////9//3//v////3//f/+/////f/9//7////9//3//v////3//f/+//3//v1RVqar/f/+/VFWpqv9//79UVamq/3//v1RVqar/f/+/VFWpqv9//79UVamq/78AAFRVqar/vwAAVFWpqv+/AABUVamq/78AAFRVqar/vwAAVFWpqv+/AABUVamq/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA")
+}]
+
+[node name="Ramp" type="StaticBody3D" groups=["navmesh"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_iffpq")
+plank = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_yhhnm")
+debug_fill = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_h2e45")

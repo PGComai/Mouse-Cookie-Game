@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ctaeyjgalrt61"]
+
+[ext_resource type="Shader" uid="uid://csqfgrlqnn811" path="res://level_tools/cylinder/cylinder_1_shader.tres" id="1_w3ncs"]
+[ext_resource type="Texture2D" uid="uid://8hrrmtpues3" path="res://level_tools/cylinder/border_shader_curve_texture.tres" id="2_jc8yn"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_w3ncs")
+shader_parameter/SmoothStepMin = 1.2
+shader_parameter/SmoothStepMax = 1.5
+shader_parameter/BorderThickness = 0.2
+shader_parameter/curve_frg_19 = ExtResource("2_jc8yn")
+shader_parameter/curve_frg_18 = ExtResource("2_jc8yn")
+shader_parameter/StepValue = 1.5
+shader_parameter/StepOrSmoothStep = 0.0

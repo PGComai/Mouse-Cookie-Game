@@ -1,0 +1,126 @@
+[gd_scene load_steps=9 format=3 uid="uid://d35wa78b581s"]
+
+[ext_resource type="PackedScene" uid="uid://ddwc7i3o3cw6x" path="res://level_tools/platform/platform.tscn" id="1_1c2mv"]
+[ext_resource type="Material" uid="uid://cu4qec53yr3jm" path="res://level_tools/debug_material.tres" id="2_f7g2b"]
+[ext_resource type="PackedScene" uid="uid://diaxvfp6bmq6b" path="res://level_tools/cylinder/cylinder.tscn" id="3_f7g2b"]
+[ext_resource type="PackedScene" uid="uid://86skaba0g4l1" path="res://mouse/mouse.tscn" id="4_4ptq8"]
+[ext_resource type="Script" uid="uid://be3wawbhteedh" path="res://camera.gd" id="5_sb12i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4ptq8"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_sb12i"]
+sky_material = SubResource("ProceduralSkyMaterial_4ptq8")
+
+[sub_resource type="Environment" id="Environment_gbhdq"]
+background_mode = 2
+sky = SubResource("Sky_sb12i")
+tonemap_mode = 2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 500.0
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gbhdq")
+
+[node name="Floor" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(200, 1, 200)
+_material = ExtResource("2_f7g2b")
+
+[node name="Wall1" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100.5, 74, 0)
+size = Vector3(1, 150, 200)
+_material = ExtResource("2_f7g2b")
+
+[node name="Wall2" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.5, 74, 0)
+size = Vector3(1, 150, 200)
+_material = ExtResource("2_f7g2b")
+
+[node name="Wall3" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.39299e-06, 74, -100.5)
+size = Vector3(1, 150, 200)
+_material = ExtResource("2_f7g2b")
+
+[node name="Wall4" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.39299e-06, 74, 100.5)
+size = Vector3(1, 150, 200)
+_material = ExtResource("2_f7g2b")
+
+[node name="Tabletop" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.5, 0)
+size = Vector3(50, 3, 50)
+_material = ExtResource("2_f7g2b")
+
+[node name="Tabletop5" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88, 41.5, -25)
+size = Vector3(24, 3, 150)
+_material = ExtResource("2_f7g2b")
+
+[node name="Tabletop7" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 15, -27)
+size = Vector3(20, 50, 146)
+_material = ExtResource("2_f7g2b")
+
+[node name="Tabletop8" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -54, 15, -90)
+size = Vector3(20, 50, 146)
+_material = ExtResource("2_f7g2b")
+
+[node name="Tabletop6" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -26, 41.5, -88)
+size = Vector3(24, 3, 100)
+_material = ExtResource("2_f7g2b")
+
+[node name="Tabletop2" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 13, -2)
+size = Vector3(10, 26, 10)
+_material = ExtResource("2_f7g2b")
+
+[node name="Tabletop3" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 28, -2)
+size = Vector3(20, 4, 20)
+_material = ExtResource("2_f7g2b")
+
+[node name="Tabletop4" parent="." instance=ExtResource("1_1c2mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 28, -2)
+size = Vector3(20, 4, 20)
+_material = ExtResource("2_f7g2b")
+
+[node name="Leg" parent="." instance=ExtResource("3_f7g2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 14.5, 20)
+radius = 1.25
+height = 30.5
+
+[node name="Leg2" parent="." instance=ExtResource("3_f7g2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 14.5, -20)
+radius = 1.25
+height = 30.5
+
+[node name="Leg3" parent="." instance=ExtResource("3_f7g2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 14.5, 20)
+radius = 1.25
+height = 30.5
+
+[node name="Leg4" parent="." instance=ExtResource("3_f7g2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 14.5, -20)
+radius = 1.25
+height = 30.5
+
+[node name="Mouse" parent="." instance=ExtResource("4_4ptq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0418, 0, 30.0344)
+floor_block_on_wall = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+script = ExtResource("5_sb12i")

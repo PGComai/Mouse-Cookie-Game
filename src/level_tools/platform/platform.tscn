@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddwc7i3o3cw6x"]
+
+[ext_resource type="Script" uid="uid://ctt6y2fqa6ylr" path="res://level_tools/platform/platform.gd" id="1_abj1e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_abj1e"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e0c4k"]
+size = Vector3(20, 1, 20)
+
+[node name="Platform" type="StaticBody3D" groups=["freeze_while_building", "navmesh"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_abj1e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_abj1e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_e0c4k")
