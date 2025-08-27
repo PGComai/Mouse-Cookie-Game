@@ -1,24 +1,64 @@
-[gd_scene load_steps=7 format=3 uid="uid://86skaba0g4l1"]
+[gd_scene load_steps=10 format=3 uid="uid://86skaba0g4l1"]
 
 [ext_resource type="Script" uid="uid://b1t2grn3io8nl" path="res://mouse/mouse.gd" id="1_vbr1e"]
+[ext_resource type="Material" uid="uid://fvrqoqw7ycd1" path="res://textures/see-thru-material.tres" id="2_784w7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4vj5v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbr1e"]
+next_pass = ExtResource("2_784w7")
+transparency = 4
 albedo_color = Color(0.473976, 0.473976, 0.473976, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_4vj5v"]
 height = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vj5v"]
+next_pass = ExtResource("2_784w7")
+transparency = 4
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_vbr1e"]
 radius = 0.06
 height = 0.12
 
-[node name="Mouse" type="CharacterBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_vbr1e"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_784w7"]
+radius = 0.1
+
+[node name="Mouse" type="CharacterBody3D" groups=["mouse"]]
 script = ExtResource("1_vbr1e")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="LabelTakeCookie" type="Label" parent="Control/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 64
+text = "TAKE COOKIE"
+horizontal_alignment = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -42,23 +82,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.334, 0.493, 0.181)
 material_override = SubResource("StandardMaterial3D_4vj5v")
 mesh = SubResource("SphereMesh_vbr1e")
 
-[node name="RayCast3DFront" type="RayCast3D" parent="Turnable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6)
+[node name="RayCast3DFront" type="ShapeCast3D" parent="Turnable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
+shape = SubResource("SphereShape3D_vbr1e")
+target_position = Vector3(0, -1.5, 0)
 collision_mask = 2
 
-[node name="RayCast3DBack" type="RayCast3D" parent="Turnable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+[node name="RayCast3DBack" type="ShapeCast3D" parent="Turnable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
+shape = SubResource("SphereShape3D_vbr1e")
+target_position = Vector3(0, -1.5, 0)
 collision_mask = 2
 
-[node name="RayCast3DCorner" type="RayCast3D" parent="Turnable"]
+[node name="RayCast3DCorner" type="ShapeCast3D" parent="Turnable"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, -1.2)
+shape = SubResource("SphereShape3D_vbr1e")
 target_position = Vector3(0, -1.8, 0)
 collision_mask = 2
 
-[node name="RayCast3DCornerBack" type="RayCast3D" parent="Turnable"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 1.3)
+[node name="RayCast3DCornerBack" type="ShapeCast3D" parent="Turnable"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 1.2)
+shape = SubResource("SphereShape3D_vbr1e")
 target_position = Vector3(0, -1.8, 0)
 collision_mask = 2
+
+[node name="CookieSpot" type="Node3D" parent="Turnable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 
 [node name="CamH" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -66,12 +115,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="CamV" type="Node3D" parent="CamH"]
 
 [node name="CamArm" type="SpringArm3D" parent="CamH/CamV"]
-collision_mask = 2
+collision_mask = 0
 spring_length = 5.0
 margin = 0.5
 
 [node name="CamTarget" type="Node3D" parent="CamH/CamV/CamArm"]
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="RayCast3D" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_784w7")
 collision_mask = 2

@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://bso6e2jim6wnq"]
+
+[ext_resource type="Script" uid="uid://xnj4hysx384s" path="res://cat/cat.gd" id="1_n236n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pujvt"]
+radius = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_pujvt"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n236n"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vgj48"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_n236n"]
+radius = 10.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vgj48"]
+radius = 25.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hxtwg"]
+radius = 50.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fpp7t"]
+radius = 0.2
+
+[node name="Cat" type="CharacterBody3D"]
+script = ExtResource("1_n236n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("SphereShape3D_pujvt")
+
+[node name="Turnable" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Turnable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+mesh = SubResource("SphereMesh_pujvt")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Turnable/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -4)
+material_override = SubResource("StandardMaterial3D_n236n")
+mesh = SubResource("SphereMesh_vgj48")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Turnable/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
+material_override = SubResource("StandardMaterial3D_n236n")
+mesh = SubResource("SphereMesh_vgj48")
+
+[node name="Area3DVision" type="Area3D" parent="Turnable"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Turnable/Area3DVision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -12)
+shape = SubResource("SphereShape3D_n236n")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Turnable/Area3DVision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -34)
+shape = SubResource("SphereShape3D_vgj48")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Turnable/Area3DVision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -78)
+shape = SubResource("SphereShape3D_hxtwg")
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("SphereShape3D_fpp7t")
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
